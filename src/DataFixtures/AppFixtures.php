@@ -48,7 +48,7 @@ class AppFixtures extends Fixture
             $newUser->setPassword($hashedPassword);
             $newUser->setComment("this is a comment for an admin user, this is a comment for an admin user");
             $newUser->setRole($getAdminRole);
-            $newUser->setIsHashed(false);
+            $newUser->setIsHashed(true);
             $em->persist($newUser);
         }
 
