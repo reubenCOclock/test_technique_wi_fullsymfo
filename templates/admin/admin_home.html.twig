@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   <br/>
+   <h4 class="text-center"> Gestion Utilisateurs</h4>
+   
+    <table class="table"> 
+     <thead> 
+        <th> Prenom </th>
+        <th> Nom</th>
+        <th> Email</th>
+        <th> Adresse </th>
+        <th> Ville </th>
+        <th> Code Postal </th>
+        <th>Commentaire/Message </th>
+        <th> Modifier </th>
+        <th> Supprimer </th>
+    </thead>
+        <tbody>
+             {% for index,user in users %}
+              
+                <tr>
+                
+                    <td> {{user.firstname}} </td>
+                    <td> {{user.lastname}} </td>
+                    <td>  {{user.email}}</td>
+                    <td>{{user.address}} </td>
+                    <td> {{user.city}} </td>
+                    <td> {{user.zipcode}}</td>
+                    <td> {% for comments in arrayComments[index] %} 
+                            <div> {{comments}} </div>
+                        {% endfor %}
+                    
+                    </td>
+                    <td> <a href="{{ path('modify_user', {id:user.id}) }}"> Modifier </td>
+                    <td> <a href="{{path('delete_user',{id:user.id})}}"> Supprimer </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   
+{% endblock %}

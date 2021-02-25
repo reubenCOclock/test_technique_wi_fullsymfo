@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br/>
+    <h4 class="text-center text-info"> Pour confirmer que vous nous avez bien déja contacté, vieullez saisir votre email</h4>
+
+    <div class="form-group d-flex flex-column align-items-center ml-5">
+      <div class="w-25 d-flex flex-column align-items-center"> 
+            {{form_start(form)}}
+                <div class="form-group">
+                {{form_row(form.email)}}
+            </div>
+             <button type="submit" class="btn btn-info btn-large send-btn"> Envoyer</button>
+            {{form_end(form)}}
+            
+      </div>
+        
+    
+  </div>
+
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+     <script>
+            $(function(){
+                console.log("the page is loaded")
+                const getBtn=$(".send-btn")
+                console.log(getBtn)
+
+                getBtn.on('click',function(){
+                    let email=$(".email");
+                    if(email.val()!=""){
+
+                    }
+                })
+            })
+     </script>
+{% endblock %}

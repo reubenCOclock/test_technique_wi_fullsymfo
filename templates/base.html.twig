@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+           <link rel="stylesheet" type="text/css" href="{{ asset('style.css')}}" />
+        {% endblock %}
+
+       
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+    </head>
+    <body>
+     {% if app.user is null  %}
+
+         <header class="p-3 bg-info"> 
+            <div class="d-flex justify-content-around">   
+                <h4 class="text-white"> Contactez Nous </h4>
+
+                <div class="d-flex"> 
+                    <div class="text-white ml-5"> <a class="link" href="/"> Home </a></div>
+                    <div class="text-white ml-5"> <a class="link" href="/login">  Connexion Espace Admin </a>  </div>
+                    <div class="text-white ml-5"> <a class="link" href="{{path('fill_email')}}">  Modification De Saisi Precedante </a> </div>
+                </div>
+            </div>
+
+     </header> 
+
+     {% else %}
+       
+        <header class="p-3 bg-info"> 
+            <div class="d-flex justify-content-around">   
+                 <h4 class="text-white"> Espace Administration  </h4>
+
+                <div class="d-flex"> 
+                    <div class="text-white ml-5"> <a class="link" href="{{ path('app_logout') }}"> Deconnexion</a>  </div>
+                     {# <div class="text-white ml-5"> <a class="link" href="/login">  Connexion Espace Admin </a>  </div> #}
+                     <div class="text-white ml-5"> <a class="link" href="#">  Modifier </a> </div> 
+                </div>
+            </div>
+
+     </header> 
+   {% endif %}
+        {% block body %}{% endblock %}
+    </body>
+</html>
