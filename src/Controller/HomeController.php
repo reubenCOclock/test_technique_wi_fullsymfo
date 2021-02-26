@@ -18,7 +18,7 @@
 
      public function renderHome(Request $request){
          $user=new User();
-         
+         //creation formulaire de contact
          $form=$this->createForm(UserType::class,$user);
         
         $form->handleRequest($request);
@@ -27,25 +27,27 @@
             
 
             $errors=false;
-
+            //controle champs telephone
             if(strlen($form->get('telephone')->getViewData())!=10){
                 $errors=true;
                 
                 $this->addFlash("error","le numero de telephone doit contenir exactement 10 chiffres");
             }
 
+            //si tout va bien
+
             if(!$errors){
                $em=$this->getDoctrine()->getManager();
                $roleRepository=$em->getRepository(Role::class);
                
                $getUserRole=$roleRepository->findOneBy(['roleTitle'=>'ROLE_USER']);
-
+                //attribution par defaut des attributs du nouveau utilisateur 
                $user->setRole($getUserRole);
 
                $user->setPassword(false);
 
                $user->setIsHashed(false);
-
+                // persist et insertion en bdd
                $em->persist($user);
 
                $em->flush();

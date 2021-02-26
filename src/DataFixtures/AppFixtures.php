@@ -22,7 +22,17 @@ class AppFixtures extends Fixture
         // $product = new Product();
         // $manager->persist($product);
 
-       
+        $roles=["ROLE_ADMIN","ROLE_USER"];
+
+        foreach($roles as $index=>$role){
+            $newRole=new Role();
+            $newRole->setRoleTitle($roles[$index]);
+            $newRole->setDescription("role description");
+            $em->persist($newRole);
+            
+        }
+
+       $em->flush();
 
         $names=["admin1","admin2","admin3"];
 
@@ -30,9 +40,7 @@ class AppFixtures extends Fixture
 
         //$userRepository=$em->getRepository(User::class);
 
-        $getAdminRole=$roleRepository->findOneBy(["id"=>1]);
-
-       
+        $getAdminRole=$roleRepository->findOneBy(["roleTitle"=>'ROLE_ADMIN']);
 
         foreach($names as $index=>$name){
             $newUser=new User();
